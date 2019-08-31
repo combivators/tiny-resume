@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<settings xmlns="http://maven.apache.org/SETTINGS/1.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0 http://maven.apache.org/xsd/settings-1.0.0.xsd">
+  <pluginGroups>
+    <pluginGroup>org.openclover</pluginGroup>
+  </pluginGroups>
+  <localRepository/>
+  <proxies />
+  <servers />
+  <mirrors />
+
+  <profiles>
+    <profile>
+      <id>development</id>
+      <repositories>
+        <repository>
+          <id>central</id>
+          <name>maven2-repository</name>
+          <snapshots>
+            <enabled>true</enabled>
+            <updatePolicy>always</updatePolicy>
+          </snapshots>
+          <releases>
+            <enabled>true</enabled>
+          </releases>
+          <url>http://repo1.maven.org/maven2/</url>
+          <layout>default</layout>
+        </repository>
+      </repositories>
+      <pluginRepositories>
+        <pluginRepository>
+          <snapshots>
+            <enabled>false</enabled>
+          </snapshots>
+          <id>central</id>
+          <name>plugins-release</name>
+          <url>http://repo1.maven.org/maven2/</url>
+        </pluginRepository>
+      </pluginRepositories>
+    </profile>
+  </profiles>
+
+  <activeProfiles>
+    <activeProfile>development</activeProfile>
+  </activeProfiles>
+</settings>
