@@ -1,0 +1,1354 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>net.tiny</groupId>
+  <artifactId>tiny-resume</artifactId>
+  <packaging>jar</packaging>
+  <version>1.0.0</version>
+  <name>Java Archive</name>
+  <url>http://maven.apache.org</url>
+
+  <properties>
+    <maven.compiler.source>1.8</maven.compiler.source>
+    <maven.compiler.target>${maven.compiler.source}</maven.compiler.target>
+    <maven.compiler.encoding>UTF-8</maven.compiler.encoding>
+    <maven.jxr.outputEncoding>UTF-8</maven.jxr.outputEncoding>
+    <maven.jxr.inputEncoding>UTF-8</maven.jxr.inputEncoding>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <project.reporting.outputEncoding>${project.build.sourceEncoding}</project.reporting.outputEncoding>
+    <build.date>${maven.build.timestamp}</build.date>
+    <jdk.version>1.8</jdk.version>
+    <javaee-api.version>8.0.1-b5</javaee-api.version>
+    <servlet.version>4.0.1</servlet.version><!-- 3.1.0, 4.0.1 -->
+    <websocket.version>1.1</websocket.version>
+    <jaxrs.version>2.0</jaxrs.version>
+    <rs-api.version>2.1.1</rs-api.version> <!-- 2.0.1, 2.1.1 -->
+    <jstl.version>1.2</jstl.version>
+    <jsf.version>2.2.14</jsf.version>  <!-- 2.2, 2.2.14 -->
+    <jpa.version>2.1.0</jpa.version>
+    <jta.version>1.2</jta.version>
+    <cdi.version>2.0.SP1</cdi.version> <!-- 1.2, 2.0.SP1 -->
+    <el.version>3.0.1-b06</el.version> <!-- 3.0.0 3.0.1-b06 -->
+    <jms.version>2.0</jms.version>
+    <mail.version>1.5.1</mail.version>
+    <activation.version>1.1.1</activation.version>
+    <annotation.version>1.3.2</annotation.version>
+    <jca.version>1.7</jca.version>
+    <json.version>1.1.4</json.version>
+    <jcahce.version>1.1.0</jcahce.version>
+    <annotations.version>1.1</annotations.version>
+    <validation.version>2.0.1.Final</validation.version>
+    <jaxb.version>2.3.1</jaxb.version> <!-- 2.3.0, 2.3.1  -->
+    <ejb.version>3.2</ejb.version>
+
+    <eclipselink.version>2.7.4</eclipselink.version>
+    <mojarra.version>2.4.0</mojarra.version>
+    <myfaces.version>2.2.10</myfaces.version>
+    <weld.version>3.1.0.Final</weld.version>
+    <resteasy.version>4.0.0.Beta5</resteasy.version>
+    <lucene.version>8.2.0</lucene.version>
+    <poi.version>4.1.0</poi.version>
+    <pdfbox.version>2.0.9</pdfbox.version>
+    <xerces.version>2.12.0</xerces.version>
+    <hibernate.version>6.1.0.Alpha3</hibernate.version>
+    <h2.version>1.4.198</h2.version>
+    <tomcat8.version>8.0.38</tomcat8.version>
+    <tomcat85.version>8.5.38</tomcat85.version>
+    <tomcat9.version>9.0.16</tomcat9.version>
+    <tomcat.version>${tomcat85.version}</tomcat.version>
+    <jandex.version>2.1.1.Final</jandex.version> <!-- speed-up startup -->
+    <ant.version>1.9.12</ant.version>
+    <slf4j.version>1.8.0-beta2</slf4j.version>
+    <log4j.version>1.2.17</log4j.version>
+    <logback.version>1.3.0-alpha4</logback.version>
+    <owb.version>1.1.8</owb.version>
+    <junit4.version>4.12</junit4.version>
+    <junit5.version>5.4.1</junit5.version>
+    <junit.version>${junit5.version}</junit.version>
+    <assertj.version>3.12.2</assertj.version>
+    <mockito.version>2.23.4</mockito.version>
+    <clover.version>4.1.2</clover.version>
+    <jglue.version>3.1.2</jglue.version>
+    <tomcat.http.port>8080</tomcat.http.port>
+    <jmockit.version>1.45</jmockit.version>
+    <jacoco.version>0.8.3</jacoco.version>
+  </properties>
+
+  <licenses>
+    <license>
+      <name>Apache 2.0</name>
+      <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+      <distribution>repo</distribution>
+      <comments>A business-friendly OSS license</comments>
+    </license>
+    <license>
+      <name>Logback License</name>
+      <url>http://logback.qos.ch/license.html</url>
+      <distribution>manual</distribution>
+      <comments>Dual-licensed under the EPL v1.0 and the LGPL 2.1</comments>
+    </license>
+    <license>
+      <name>Slf4j License</name>
+      <url>http://slf4j.org/license.html</url>
+      <distribution>manual</distribution>
+      <comments>MIT license</comments>
+    </license>
+  </licenses>
+  <organization>
+    <name>e-artifice Corp.</name>
+    <url>http://www.e-artifice.com/</url>
+  </organization>
+  <inceptionYear>2019</inceptionYear>
+
+  <distributionManagement>
+    <site>
+      <id>${project.artifactId}-site</id>
+      <url>${website}</url>
+    </site>
+  </distributionManagement>
+
+  <contributors>
+    <contributor>
+      <name>Wayne Wu</name>
+      <email>wuweibg@gmail.com</email>
+    </contributor>
+  </contributors>
+
+  <profiles>
+    <!-- Development -->
+    <profile>
+      <id>development</id>
+      <activation>
+        <activeByDefault>true</activeByDefault>
+        <property>
+          <name>profile</name>
+          <value>development</value>
+        </property>
+      </activation>
+      <properties>
+        <build.profile.id>development</build.profile.id>
+        <profileActive>development</profileActive>
+        <log.level>ALL</log.level>
+      </properties>
+    </profile>
+
+    <!-- Staging -->
+    <profile>
+      <id>staging</id>
+      <activation>
+        <property>
+          <name>profile</name>
+          <value>staging</value>
+        </property>
+      </activation>
+      <properties>
+        <build.profile.id>staging</build.profile.id>
+        <profileActive>staging</profileActive>
+        <log.level>WARN</log.level>
+      </properties>
+    </profile>
+
+    <!-- Production -->
+    <profile>
+      <id>production</id>
+      <activation>
+        <property>
+          <name>profile</name>
+          <value>production</value>
+        </property>
+      </activation>
+      <properties>
+        <build.profile.id>production</build.profile.id>
+        <profileActive>production</profileActive>
+        <log.level>WARN</log.level>
+        <maven.test.skip>true</maven.test.skip>
+      </properties>
+    </profile>
+  </profiles>
+
+  <!-- Dependency Management -->
+  <dependencyManagement>
+    <dependencies>
+      <!-- J2EE API 7.0 Begin -->
+      <!-- J2EE API 7.0 End -->
+      <!-- J2EE WEP API 7.0 Begin -->
+      <dependency>
+        <groupId>javax</groupId>
+        <artifactId>javaee-api</artifactId>
+        <version>${javaee-api.version}</version>
+        <scope>provided</scope>
+      </dependency>
+      <dependency>
+        <groupId>javax</groupId>
+        <artifactId>javaee-web-api</artifactId>
+        <version>${javaee-api.version}</version>
+        <scope>provided</scope>
+      </dependency>
+      <dependency>
+        <groupId>javax.enterprise</groupId>
+        <artifactId>cdi-api</artifactId>
+        <version>${cdi.version}</version>
+        <scope>provided</scope>
+      </dependency>
+      <dependency>
+        <groupId>javax.transaction</groupId>
+        <artifactId>javax.transaction-api</artifactId>
+        <version>${jta.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>javax.servlet</groupId>
+        <artifactId>javax.servlet-api</artifactId>
+        <version>${servlet.version}</version>
+        <scope>provided</scope>
+      </dependency>
+      <dependency>
+        <groupId>javax.servlet</groupId>
+        <artifactId>jstl</artifactId>
+        <version>${jstl.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>javax.websocket</groupId>
+        <artifactId>javax.websocket-api</artifactId>
+        <version>${websocket.version}</version>
+        <scope>provided</scope>
+      </dependency>
+      <dependency>
+        <groupId>javax.mail</groupId>
+        <artifactId>javax.mail-api</artifactId>
+        <version>${mail.version}</version>
+        <scope>provided</scope>
+      </dependency>
+      <dependency>
+        <groupId>javax.activation</groupId>
+        <artifactId>activation</artifactId>
+        <version>${activation.version}</version>
+        <scope>provided</scope>
+      </dependency>
+      <dependency>
+        <groupId>javax.json</groupId>
+        <artifactId>javax.json-api</artifactId>
+        <version>${json.version}</version>
+        <scope>provided</scope>
+      </dependency>
+      <dependency>
+        <groupId>org.glassfish</groupId>
+        <artifactId>javax.json</artifactId>
+        <version>1.1.4</version>
+      </dependency>
+
+      <dependency>
+        <groupId>org.apache.taglibs</groupId>
+        <artifactId>taglibs-standard-impl</artifactId>
+        <version>1.2.5</version>
+      </dependency>
+      <dependency>
+        <groupId>xerces</groupId>
+        <artifactId>xercesImpl</artifactId>
+        <version>${xerces.version}</version>
+      </dependency>
+      <!-- J2EE WEP API 7.0 End -->
+
+      <!-- EL 3.0 Begin -->
+      <dependency>
+        <groupId>javax.el</groupId>
+        <artifactId>javax.el-api</artifactId>
+        <version>3.0.1-b06</version>
+        <scope>provided</scope>
+      </dependency>
+      <dependency>
+        <groupId>org.glassfish</groupId>
+        <artifactId>javax.el</artifactId>
+        <version>3.0.1-b10</version>
+      </dependency>
+      <!-- EL 3.0 End -->
+
+      <!-- JSF 2.2 Begin -->
+      <dependency>
+        <groupId>javax.faces</groupId>
+        <artifactId>javax.faces-api</artifactId>
+        <version>${jsf.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.glassfish</groupId>
+        <artifactId>javax.faces</artifactId>
+        <version>${mojarra.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.sun.faces</groupId>
+        <artifactId>jsf-api</artifactId>
+        <version>${mojarra.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.sun.faces</groupId>
+        <artifactId>jsf-impl</artifactId>
+        <version>${mojarra.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.sun.mail</groupId>
+        <artifactId>javax.mail</artifactId>
+        <version>1.6.2</version>
+      </dependency>
+      <dependency>
+        <groupId>org.primefaces</groupId>
+        <artifactId>primefaces</artifactId>
+        <version>6.0</version>
+      </dependency>
+      <!-- JSF 2.2 End -->
+
+      <!-- Weld 2.2 For CDI 1.2, JSR-346, JavaEE7 -->
+      <!-- Weld/CDI Begin -->
+      <dependency>
+        <groupId>org.jboss.weld.servlet</groupId>
+        <artifactId>weld-servlet</artifactId>
+        <version>2.4.8.Final</version>
+      </dependency>
+      <!-- Weld 3.0 For CDI 2.0, JSR-365, JavaEE8 -->
+      <dependency>
+        <groupId>org.jboss.weld.servlet</groupId>
+        <artifactId>weld-servlet-core</artifactId>
+        <version>3.1.0.Final</version>
+      </dependency>
+      <dependency>
+        <groupId>org.jboss.weld.servlet</groupId>
+        <artifactId>weld-servlet-shaded</artifactId>
+        <version>3.1.0.Final</version>
+      </dependency>
+      <dependency>
+        <groupId>org.jboss.weld.se</groupId>
+        <artifactId>weld-se-core</artifactId>
+        <version>${weld.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.jboss.weld.se</groupId>
+        <artifactId>weld-se-shaded</artifactId>
+        <version>${weld.version}</version>
+        <scope>test</scope>
+      </dependency>
+      <dependency>
+        <groupId>org.jboss.weld</groupId>
+        <artifactId>weld-junit4</artifactId>
+        <version>1.3.1.Final</version>
+        <scope>test</scope>
+        <exclusions>
+          <exclusion>
+            <groupId>org.jboss.weld.se</groupId>
+            <artifactId>weld-se-core</artifactId>
+          </exclusion>
+        </exclusions>
+      </dependency>
+      <dependency>
+        <groupId>org.jboss.weld</groupId>
+        <artifactId>weld-junit5</artifactId>
+        <version>1.3.1.Final</version>
+        <scope>test</scope>
+        <exclusions>
+          <exclusion>
+            <groupId>org.jboss.weld.se</groupId>
+            <artifactId>weld-se-core</artifactId>
+          </exclusion>
+        </exclusions>
+      </dependency>
+      <!-- Weld/CDI End -->
+
+      <!-- JAXB 2.3 Begin -->
+      <dependency>
+        <groupId>javax.xml.bind</groupId>
+        <artifactId>jaxb-api</artifactId>
+        <version>${jaxb.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.sun.xml.bind</groupId>
+        <artifactId>jaxb-core</artifactId>
+        <version>${jaxb.version}</version>
+      </dependency>
+      <!-- JAXB 2.3 End -->
+
+      <!-- JAX-RS(REST) 2.0 Begin -->
+      <dependency>
+        <groupId>org.jboss.resteasy</groupId>
+        <artifactId>resteasy-jaxrs</artifactId>
+        <version>${resteasy.version}</version>
+        <exclusions>
+          <exclusion>
+            <artifactId>validation-api</artifactId>
+            <groupId>javax.validation</groupId>
+          </exclusion>
+        </exclusions>
+      </dependency>
+      <dependency>
+        <groupId>org.jboss.resteasy</groupId>
+        <artifactId>async-http-servlet-3.0</artifactId>
+        <version>3.1.0.Beta2</version>
+      </dependency>
+      <dependency>
+        <groupId>org.jboss.resteasy</groupId>
+        <artifactId>resteasy-servlet-initializer</artifactId>
+        <version>${resteasy.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.jboss.resteasy</groupId>
+        <artifactId>resteasy-cdi</artifactId>
+        <version>${resteasy.version}</version>
+        <exclusions>
+          <exclusion>
+            <artifactId>validation-api</artifactId>
+            <groupId>javax.validation</groupId>
+          </exclusion>
+        </exclusions>
+      </dependency>
+      <dependency>
+        <groupId>org.jboss.resteasy</groupId>
+        <artifactId>resteasy-validator-provider-11</artifactId>
+        <version>${resteasy.version}</version>
+        <exclusions>
+          <exclusion>
+            <artifactId>hibernate-validator</artifactId>
+            <groupId>org.hibernate</groupId>
+          </exclusion>
+          <exclusion>
+            <artifactId>weld-se</artifactId>
+            <groupId>org.jboss.weld.se</groupId>
+          </exclusion>
+        </exclusions>
+      </dependency>
+
+      <!-- JSON/POJO support -->
+      <dependency>
+        <groupId>org.jboss.resteasy</groupId>
+        <artifactId>resteasy-jaxb-provider</artifactId>
+        <version>${resteasy.version}</version>
+        <exclusions>
+          <exclusion>
+            <groupId>javax.xml.bind</groupId>
+            <artifactId>jaxb-api</artifactId>
+          </exclusion>
+          <exclusion>
+            <groupId>com.sun.xml.bind</groupId>
+            <artifactId>jaxb-core</artifactId>
+          </exclusion>
+          <exclusion>
+            <groupId>com.sun.xml.bind</groupId>
+            <artifactId>jaxb-impl</artifactId>
+          </exclusion>
+        </exclusions>
+      </dependency>
+      <dependency>
+        <groupId>com.fasterxml.jackson.core</groupId>
+        <artifactId>jackson-databind</artifactId>
+        <version>2.9.8</version>
+      </dependency>
+      <dependency>
+        <groupId>org.jboss.resteasy</groupId>
+        <artifactId>resteasy-jackson2-provider</artifactId>
+        <version>${resteasy.version}</version>
+        <exclusions>
+          <exclusion>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+          </exclusion>
+        </exclusions>
+      </dependency>
+      <dependency>
+        <groupId>org.jboss.resteasy</groupId>
+        <artifactId>resteasy-json-p-provider</artifactId>
+        <version>${resteasy.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.jboss.resteasy</groupId>
+        <artifactId>resteasy-jackson-provider</artifactId>
+        <version>${resteasy.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>org.jboss.resteasy</groupId>
+        <artifactId>resteasy-multipart-provider</artifactId>
+        <version>${resteasy.version}</version>
+      </dependency>
+
+      <!-- Resteasy Server Cache -->
+      <dependency>
+        <groupId>org.infinispan</groupId>
+        <artifactId>infinispan-core</artifactId>
+        <version>9.3.1.Final</version>
+      </dependency>
+      <dependency>
+        <groupId>org.jboss.resteasy</groupId>
+        <artifactId>resteasy-cache-core</artifactId>
+        <version>${resteasy.version}</version>
+        <exclusions>
+          <exclusion>
+            <groupId>org.infinispan</groupId>
+            <artifactId>infinispan-core</artifactId>
+          </exclusion>
+        </exclusions>
+      </dependency>
+
+      <!-- REST Client support -->
+      <dependency>
+        <groupId>org.jboss.resteasy</groupId>
+        <artifactId>resteasy-client</artifactId>
+        <version>${resteasy.version}</version>
+      </dependency>
+      <!-- JAX-RS(REST) 2.0 End -->
+
+      <dependency>
+        <groupId>org.jboss</groupId>
+        <artifactId>jandex</artifactId>
+        <version>${jandex.version}</version>
+      </dependency>
+
+      <!-- Validation API 2.0.1 Begin -->
+      <dependency>
+        <groupId>javax.validation</groupId>
+        <artifactId>validation-api</artifactId>
+        <version>${validation.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.hibernate</groupId>
+        <artifactId>hibernate-validator-cdi</artifactId>
+        <version>${hibernate.version}</version>
+      </dependency>
+      <!-- Validation API 2.0.1 End -->
+
+      <!-- Java Cache API 1.0 Begin -->
+      <dependency>
+        <groupId>javax.cache</groupId>
+        <artifactId>cache-api</artifactId>
+        <version>${jcahce.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.ehcache</groupId>
+        <artifactId>jcache</artifactId>
+        <version>1.0.1</version>
+      </dependency>
+      <!-- Java Cache API 1.0 End -->
+
+      <!-- Eclipselink/JPA 2.0 Begin -->
+      <dependency>
+        <groupId>javax.persistence</groupId>
+        <artifactId>javax.persistence-api</artifactId>
+        <version>2.2</version>
+      </dependency>
+      <dependency>
+        <groupId>org.eclipse.persistence</groupId>
+        <artifactId>org.eclipse.persistence.jpa</artifactId>
+        <version>${eclipselink.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.eclipse.persistence</groupId>
+        <artifactId>eclipselink</artifactId>
+        <version>${eclipselink.version}</version>
+        <exclusions>
+          <exclusion>
+            <groupId>org.eclipse.persistence</groupId>
+            <artifactId>javax.persistence</artifactId>
+          </exclusion>
+        </exclusions>
+      </dependency>
+      <dependency>
+        <groupId>org.eclipse.persistence</groupId>
+        <artifactId>javax.persistence</artifactId>
+        <version>2.2.1</version>
+      </dependency>
+      <!-- Eclipselink/JPA 2.0 End -->
+
+      <!-- Conntion pool c3p0 Begin -->
+      <dependency>
+        <groupId>org.hibernate</groupId>
+        <artifactId>hibernate-c3p0</artifactId>
+        <version>5.4.1.Final</version>
+      </dependency>
+      <!-- Conntion pool c3p0 Begin -->
+
+      <!-- lucene Begin -->
+      <dependency>
+        <groupId>org.apache.lucene</groupId>
+        <artifactId>lucene-core</artifactId>
+        <version>${lucene.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.lucene</groupId>
+        <artifactId>lucene-queries</artifactId>
+        <version>${lucene.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.lucene</groupId>
+        <artifactId>lucene-queryparser</artifactId>
+        <version>${lucene.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.lucene</groupId>
+        <artifactId>lucene-analyzers-common</artifactId>
+        <version>${lucene.version}</version>
+      </dependency>
+      <!-- lucene End -->
+
+      <!-- POI Begin -->
+      <dependency>
+        <groupId>org.apache.ant</groupId>
+        <artifactId>ant</artifactId>
+        <version>${ant.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.poi</groupId>
+        <artifactId>poi</artifactId>
+        <version>${poi.version}</version>
+        <exclusions>
+          <exclusion>
+            <groupId>org.apache.ant</groupId>
+            <artifactId>ant</artifactId>
+          </exclusion>
+        </exclusions>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.poi</groupId>
+        <artifactId>poi-excelant</artifactId>
+        <version>${poi.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.poi</groupId>
+        <artifactId>poi-scratchpad</artifactId>
+        <version>${poi.version}</version>
+      </dependency>
+      <!-- POI End -->
+
+      <!-- PDFBox Begin -->
+      <dependency>
+        <groupId>org.apache.pdfbox</groupId>
+        <artifactId>pdfbox</artifactId>
+        <version>${pdfbox.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.pdfbox</groupId>
+        <artifactId>pdfbox-tools</artifactId>
+        <version>${pdfbox.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.pdfbox</groupId>
+        <artifactId>fontbox</artifactId>
+        <version>${pdfbox.version}</version>
+      </dependency>
+      <!-- PDFBox End -->
+      <!-- RDMS H2 database Begin -->
+      <dependency>
+        <groupId>com.h2database</groupId>
+        <artifactId>h2</artifactId>
+        <version>${h2.version}</version>
+      </dependency>
+      <!-- RDMS H2 database End -->
+
+      <!-- Logging Api -->
+      <dependency>
+        <groupId>org.slf4j</groupId>
+        <artifactId>slf4j-api</artifactId>
+        <version>${slf4j.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>ch.qos.logback</groupId>
+        <artifactId>logback-classic</artifactId>
+        <version>${logback.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>ch.qos.logback</groupId>
+        <artifactId>logback-core</artifactId>
+        <version>${logback.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.slf4j</groupId>
+        <artifactId>jcl-over-slf4j</artifactId>
+        <version>${slf4j.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.slf4j</groupId>
+        <artifactId>jul-to-slf4j</artifactId>
+        <version>${slf4j.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.slf4j</groupId>
+        <artifactId>log4j-over-slf4j</artifactId>
+        <version>${slf4j.version}</version>
+      </dependency>
+
+      <!-- Unit Testing -->
+      <!-- JUnit5 Testing -->
+      <dependency>
+        <groupId>org.junit.jupiter</groupId>
+        <artifactId>junit-jupiter-api</artifactId>
+        <version>${junit5.version}</version>
+        <scope>test</scope>
+      </dependency>
+      <dependency>
+        <groupId>org.junit.jupiter</groupId>
+        <artifactId>junit-jupiter-engine</artifactId>
+        <version>${junit5.version}</version>
+        <scope>test</scope>
+      </dependency>
+      <dependency>
+        <groupId>org.junit.jupiter</groupId>
+        <artifactId>junit-jupiter-params</artifactId>
+        <version>${junit5.version}</version>
+        <scope>test</scope>
+      </dependency>
+      <dependency>
+        <groupId>org.junit.platform</groupId>
+        <artifactId>junit-platform-launcher</artifactId>
+        <version>${junit.platform.version}</version>
+        <scope>test</scope>
+      </dependency>
+      <!-- JUnit Add-on Support JUnit5 Testing -->
+      <dependency>
+          <groupId>com.atlassian.clover</groupId>
+          <artifactId>clover</artifactId>
+          <version>${clover.version}</version>
+          <scope>test</scope>
+      </dependency>
+      <dependency>
+        <groupId>org.assertj</groupId>
+        <artifactId>assertj-core</artifactId>
+        <version>${assertj.version}</version>
+        <scope>test</scope>
+      </dependency>
+
+      <!-- Mock Testing -->
+      <dependency>
+          <groupId>org.mockito</groupId>
+          <artifactId>mockito-core</artifactId>
+          <version>${mockito.version}</version>
+          <scope>test</scope>
+      </dependency>
+      <dependency>
+          <groupId>org.mockito</groupId>
+          <artifactId>mockito-junit-jupiter</artifactId>
+          <version>${mockito.version}</version>
+          <scope>test</scope>
+      </dependency>
+
+      <!-- Database Testing -->
+      <dependency>
+        <groupId>org.dbunit</groupId>
+        <artifactId>dbunit</artifactId>
+        <version>2.6.0</version>
+        <scope>test</scope>
+      </dependency>
+
+      <!-- Mock Testing -->
+      <dependency>
+        <groupId>org.mockito</groupId>
+        <artifactId>mockito-all</artifactId>
+        <version>1.9.5</version>
+        <scope>test</scope>
+      </dependency>
+
+      <!-- CDI-Unit Testing -->
+      <dependency>
+        <groupId>org.jglue.cdi-unit</groupId>
+        <artifactId>cdi-unit</artifactId>
+        <version>${jglue.version}</version>
+        <scope>test</scope>
+      </dependency>
+
+      <!-- Embed Tomcat Testing Begin -->
+      <dependency>
+        <groupId>org.apache.tomcat.embed</groupId>
+        <artifactId>tomcat-embed-core</artifactId>
+        <version>${tomcat.version}</version>
+        <scope>test</scope>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.tomcat.embed</groupId>
+        <artifactId>tomcat-embed-jasper</artifactId>
+        <version>${tomcat.version}</version>
+        <scope>test</scope>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.tomcat.embed</groupId>
+        <artifactId>tomcat-embed-el</artifactId>
+        <version>${tomcat.version}</version>
+        <scope>test</scope>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.tomcat.embed</groupId>
+        <artifactId>tomcat-embed-logging-juli</artifactId>
+        <version>8.5.2</version>
+        <scope>test</scope>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.tomcat</groupId>
+        <artifactId>tomcat-catalina</artifactId>
+        <version>${tomcat.version}</version>
+        <scope>test</scope>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.tomcat</groupId>
+        <artifactId>tomcat-jasper</artifactId>
+        <version>${tomcat.version}</version>
+        <scope>test</scope>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.tomcat</groupId>
+        <artifactId>tomcat-jasper-el</artifactId>
+        <version>${tomcat.version}</version>
+        <scope>test</scope>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.tomcat</groupId>
+        <artifactId>tomcat-jsp-api</artifactId>
+        <version>${tomcat.version}</version>
+        <scope>test</scope>
+      </dependency>
+      <!-- Embed Tomcat Testing End -->
+
+    </dependencies>
+  </dependencyManagement>
+
+  <dependencies>
+    <!-- Lucene -->
+    <dependency>
+      <groupId>org.apache.lucene</groupId>
+      <artifactId>lucene-core</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.lucene</groupId>
+      <artifactId>lucene-queries</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.lucene</groupId>
+      <artifactId>lucene-queryparser</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.lucene</groupId>
+      <artifactId>lucene-analyzers-common</artifactId>
+    </dependency>
+    <!-- POI -->
+    <dependency>
+      <groupId>org.apache.poi</groupId>
+      <artifactId>poi</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.poi</groupId>
+      <artifactId>poi-excelant</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.poi</groupId>
+      <artifactId>poi-scratchpad</artifactId>
+    </dependency>
+    <!-- PDFBox -->
+    <dependency>
+      <groupId>org.apache.pdfbox</groupId>
+      <artifactId>pdfbox</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.pdfbox</groupId>
+      <artifactId>pdfbox-tools</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.pdfbox</groupId>
+      <artifactId>fontbox</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>net.tiny</groupId>
+      <artifactId>tiny-boot</artifactId>
+      <version>1.0.0</version>
+    </dependency>
+    <!-- Unit Testing -->
+    <dependency>
+      <groupId>net.tiny</groupId>
+      <artifactId>tiny-benchmark</artifactId>
+      <version>1.0.0</version>
+      <scope>test</scope>
+    </dependency>
+    <!-- JUnit5 Testing -->
+    <dependency>
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter-api</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter-engine</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter-params</artifactId>
+    </dependency>
+    <dependency>
+        <groupId>com.atlassian.clover</groupId>
+        <artifactId>clover</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.assertj</groupId>
+      <artifactId>assertj-core</artifactId>
+    </dependency>
+
+    <!-- Mock Testing -->
+    <dependency>
+        <groupId>org.mockito</groupId>
+        <artifactId>mockito-core</artifactId>
+    </dependency>
+    <dependency>
+        <groupId>org.mockito</groupId>
+        <artifactId>mockito-junit-jupiter</artifactId>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <defaultGoal>clean install site versions:display-dependency-updates</defaultGoal>
+    <finalName>${project.artifactId}</finalName>
+    <!-- Plugins Management -->
+    <pluginManagement>
+      <plugins>
+        <!-- Build plugins -->
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-compiler-plugin</artifactId>
+          <version>3.8.0</version>
+          <configuration>
+            <fork>true</fork>
+            <source>${maven.compiler.source}</source>
+            <target>${maven.compiler.target}</target>
+            <encoding>${project.build.sourceEncoding}</encoding>
+            <compilerArgument>-Xlint:all</compilerArgument>
+            <compilerArgument>-XDignore.symbol.file</compilerArgument>
+            <meminitial>${maven.compiler.mamoryUsage}</meminitial>
+            <maxmem>${maven.compiler.mamoryUsage}</maxmem>
+          </configuration>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-resources-plugin</artifactId>
+          <version>3.1.0</version>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-jar-plugin</artifactId>
+          <version>3.1.1</version>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-war-plugin</artifactId>
+          <version>3.2.2</version>
+          <configuration>
+            <failOnMissingWebXml>false</failOnMissingWebXml>
+            <webResources>
+              <resource>
+                <directory>src/main/webapp</directory>
+              </resource>
+              <resource>
+                <directory>src/main/resources</directory>
+                <targetPath>WEB-INF/classes</targetPath>
+              </resource>
+            </webResources>
+          </configuration>
+        </plugin>
+
+        <!-- Deploy plugins -->
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-deploy-plugin</artifactId>
+          <version>2.8.2</version>
+          <dependencies>
+            <dependency>
+              <groupId>org.apache.maven.wagon</groupId>
+              <artifactId>wagon-scm</artifactId>
+              <version>3.3.2</version>
+            </dependency>
+            <dependency>
+              <groupId>org.apache.maven.scm</groupId>
+              <artifactId>maven-scm-provider-svnexe</artifactId>
+              <version>1.9.5</version>
+            </dependency>
+          </dependencies>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-release-plugin</artifactId>
+          <version>2.5.3</version>
+        </plugin>
+        <plugin>
+          <groupId>org.codehaus.mojo</groupId>
+          <artifactId>versions-maven-plugin</artifactId>
+          <version>2.7</version>
+        </plugin>
+        <!-- Manages the license -->
+        <plugin>
+          <groupId>org.codehaus.mojo</groupId>
+          <artifactId>license-maven-plugin</artifactId>
+          <version>1.19</version>
+          <executions>
+            <execution>
+              <id>download-licenses</id>
+              <goals>
+                <goal>download-licenses</goal>
+              </goals>
+            </execution>
+          </executions>
+        </plugin>
+
+        <!-- Report plugins -->
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-surefire-plugin</artifactId>
+          <version>3.0.0-M3</version>
+          <configuration>
+            <useSystemClassLoader>false</useSystemClassLoader>
+          </configuration>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-surefire-report-plugin</artifactId>
+          <version>3.0.0-M3</version>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-failsafe-plugin</artifactId>
+          <version>2.16</version>
+          <executions>
+            <execution>
+              <id>default-integration-test</id>
+              <goals>
+                <goal>integration-test</goal>
+              </goals>
+            </execution>
+          </executions>
+        </plugin>
+
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-source-plugin</artifactId>
+          <version>3.0.1</version>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-pmd-plugin</artifactId>
+          <version>3.11.0</version>
+          <configuration>
+            <targetJdk>${maven.compiler.target}</targetJdk>
+            <sourceEncoding>${project.build.sourceEncoding}</sourceEncoding>
+          </configuration>
+        </plugin>
+        <!-- Project Info -->
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-project-info-reports-plugin</artifactId>
+          <version>2.9</version>
+        </plugin>
+        <!-- Javadoc -->
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-javadoc-plugin</artifactId>
+          <version>3.1.0</version>
+          <executions>
+            <execution>
+              <phase>verify</phase>
+              <id>verify-javadocs</id>
+              <goals>
+                <goal>jar</goal>
+              </goals>
+            </execution>
+          </executions>
+        </plugin>
+
+        <!-- Source code -->
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-jxr-plugin</artifactId>
+          <version>3.0.0</version>
+        </plugin>
+        <!-- Checkstyle -->
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-checkstyle-plugin</artifactId>
+          <version>3.0.0</version>
+          <dependencies>
+            <dependency>
+              <groupId>com.puppycrawl.tools</groupId>
+              <artifactId>checkstyle</artifactId>
+              <version>8.8</version>
+            </dependency>
+          </dependencies>
+          <configuration>
+            <includeTestSourceDirectory>false</includeTestSourceDirectory>
+            <configLocation>src/test/resources/check/checkstyle.xml</configLocation>
+            <suppressionsLocation>src/test/resources/check/suppresessions.xml</suppressionsLocation>
+            <encoding>UTF-8</encoding>
+            <outputFile>${project.build.directory}/site/checkstyle/result.xml</outputFile>
+            <consoleOutput>true</consoleOutput>
+            <linkXRef>false</linkXRef>
+            <violationSeverity>warning</violationSeverity> <!-- error -->
+          </configuration>
+        </plugin>
+        <!-- Findbugs -->
+        <plugin>
+          <groupId>org.codehaus.mojo</groupId>
+          <artifactId>findbugs-maven-plugin</artifactId>
+          <version>3.0.4</version>
+          <configuration>
+            <effort>Max</effort>
+            <threshold>Low</threshold>
+            <failOnError>false</failOnError>
+            <findbugsXmlOutput>true</findbugsXmlOutput>
+            <xmlOutput>true</xmlOutput>
+            <excludeFilterFile>src/test/resources/check/findbugs-excludes.xml</excludeFilterFile>
+            <includeFilterFile>src/test/resources/check/findbugs-includes.xml</includeFilterFile>
+            <!-- <onlyAnalyze>yourpackage.-</onlyAnalyze> -->
+          </configuration>
+        </plugin>
+
+        <!-- NCSS (Code count) NOT Support JDK8 Lambda -->
+        <plugin>
+          <groupId>org.codehaus.mojo</groupId>
+          <artifactId>javancss-maven-plugin</artifactId>
+          <version>2.1</version>
+        </plugin>
+        <!-- TODO -->
+        <plugin>
+          <groupId>org.codehaus.mojo</groupId>
+          <artifactId>taglist-maven-plugin</artifactId>
+          <version>2.4</version>
+        </plugin>
+        <!-- Metrics report -->
+        <plugin>
+          <groupId>org.codehaus.mojo</groupId>
+          <artifactId>jdepend-maven-plugin</artifactId>
+          <version>2.0</version>
+        </plugin>
+        <!-- Coverage -->
+        <plugin>
+          <groupId>org.codehaus.mojo</groupId>
+          <artifactId>cobertura-maven-plugin</artifactId>
+          <version>2.7</version>
+        </plugin>
+        <!-- JaCoCo Coverage -->
+        <plugin>
+          <groupId>org.jacoco</groupId>
+          <artifactId>jacoco-maven-plugin</artifactId>
+          <version>${jacoco.version}</version>
+          <executions>
+            <execution>
+              <id>>pre-unit-test</id>
+              <goals>
+                <goal>prepare-agent</goal>
+              </goals>
+            </execution>
+            <execution>
+              <id>post-unit-test</id>
+              <phase>test</phase>
+              <goals>
+                <goal>report</goal>
+              </goals>
+            </execution>
+            <execution>
+              <id>default-check</id>
+              <phase>verify</phase>
+              <goals>
+                <goal>check</goal>
+              </goals>
+            </execution>
+          </executions>
+        </plugin>
+
+        <!-- OpenClover Coverage -->
+        <plugin>
+          <groupId>org.openclover</groupId>
+          <artifactId>clover-maven-plugin</artifactId>
+          <version>4.3.1</version>
+        </plugin>
+
+        <!-- SourceClear -->
+        <plugin>
+          <groupId>com.srcclr</groupId>
+          <artifactId>srcclr-maven-plugin</artifactId>
+          <version>3.1.0</version>
+          <configuration>
+            <!--- Add configuration details here -->
+            <apiToken>eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0ZWFtSWQiOiIxMjQxNCIsInNjb3BlIjpbXSwiaWQiOjIzMTEwLCJleHAiOjE1MzUxMDI4NTcsImF1dGhvcml0aWVzIjoiQUdFTlQiLCJvcmdJZCI6IjY1IiwianRpIjoiZGNhMjkxZWItMWI5Ny00MWJjLTgwNzUtN2RmMjE5MWJlNzhmIiwiY2xpZW50X2lkIjoiIn0.TgOZEVL9NAWoZf1QPHfD1iYS6S1sjIN-fWZdm6aS1rq_edbbsEezDNJdGgUWWhfZW9L6GdVp2uDy4X6yA4_ycFSnlyzscOWFYcd8mOXANRyCzpp-L-EmcQMv37NNnzf0cfCyoOuYsY-wogO48vlBOhJhX9gcDfsyPs5aSIQrHF8</apiToken>
+          </configuration>
+          <executions>
+            <execution>
+              <id>srcclr-scan</id>
+              <phase>verify</phase>
+              <goals>
+                <goal>scan</goal>
+              </goals>
+            </execution>
+          </executions>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+
+    <!-- Build plugins -->
+    <plugins>
+      <!-- Set JDK Compiler Level -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-deploy-plugin</artifactId>
+      </plugin>
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>versions-maven-plugin</artifactId>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-release-plugin</artifactId>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-jar-plugin</artifactId>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-failsafe-plugin</artifactId>
+      </plugin>
+    </plugins>
+  </build>
+
+  <reporting>
+    <plugins>
+      <!-- Project Info -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-project-info-reports-plugin</artifactId>
+        <reportSets>
+          <reportSet>
+            <reports>
+              <report>index</report>
+              <report>dependencies</report>
+              <report>dependency-convergence</report>
+              <report>dependency-management</report>
+              <report>plugins</report>
+              <report>plugin-management</report>
+              <report>summary</report>
+              <report>license</report>
+              <report>project-team</report>
+              <report>scm</report>
+              <report>cim</report>
+              <report>issue-tracking</report>
+              <report>mailing-list</report>
+            </reports>
+          </reportSet>
+        </reportSets>
+      </plugin>
+
+      <!-- Javadoc -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-javadoc-plugin</artifactId>
+        <configuration>
+          <failOnError>false</failOnError>
+          <sourcepath>${basedir}/src/main/java</sourcepath>
+          <quiet>true</quiet>
+          <attach>false</attach>
+          <bottom><![CDATA[<p class="legalCopy"><small>${copyright}</small></p>]]></bottom>
+        </configuration>
+        <!-- Skip test api docs -->
+        <reportSets>
+          <reportSet>
+            <id>aggregate</id>
+            <reports>
+              <report>aggregate</report>
+            </reports>
+          </reportSet>
+        </reportSets>
+      </plugin>
+
+      <!-- Source code -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-jxr-plugin</artifactId>
+        <!-- Skip test source -->
+        <reportSets>
+          <reportSet>
+            <id>aggregate</id>
+            <reports>
+              <report>aggregate</report>
+            </reports>
+          </reportSet>
+        </reportSets>
+      </plugin>
+      <!-- PMD code analysis -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-pmd-plugin</artifactId>
+      </plugin>
+      <!-- Metrics report -->
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>jdepend-maven-plugin</artifactId>
+        <version>2.0</version>
+      </plugin>
+      <!-- Findbugs -->
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>findbugs-maven-plugin</artifactId>
+      </plugin>
+      <!-- Checkstyle -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-checkstyle-plugin</artifactId>
+      </plugin>
+      <!-- Maven Surefire Report -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-report-plugin</artifactId>
+      </plugin>
+      <!-- Coverage -->
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>cobertura-maven-plugin</artifactId>
+        <configuration>
+          <formats>
+            <format>html</format>
+            <format>xml</format>
+          </formats>
+          <instrumentation>
+          </instrumentation>
+        </configuration>
+      </plugin>
+
+      <!-- JaCoco Coverage -->
+      <plugin>
+        <groupId>org.jacoco</groupId>
+        <artifactId>jacoco-maven-plugin</artifactId>
+        <reportSets>
+          <reportSet>
+            <reports>
+              <report>report</report>
+            </reports>
+          </reportSet>
+        </reportSets>
+      </plugin>
+
+      <!-- OpenClover Coverage -->
+      <plugin>
+        <groupId>org.openclover</groupId>
+        <artifactId>clover-maven-plugin</artifactId>
+      </plugin>
+
+      <!-- TODO -->
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>taglist-maven-plugin</artifactId>
+        <configuration>
+          <skipTestSources>true</skipTestSources>
+          <tags>
+            <tag>TODO</tag>
+            <tag>FIXME</tag>
+            <tag>@todo</tag>
+            <tag>@deprecated</tag>
+          </tags>
+        </configuration>
+      </plugin>
+
+    </plugins>
+  </reporting>
+
+</project>

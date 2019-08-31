@@ -1,0 +1,29 @@
+{
+  "name" : "Education",
+  "values" : [
+      {
+      "name" : "Junior",
+      "value" : 10.0
+    },
+      {
+      "name" : "Vocational",
+      "value" : 15.0
+    },
+      {
+      "name" : "University",
+      "value" : 30.0
+    },
+      {
+      "name" : "Postgraduate",
+      "value" : 40.0
+    },
+      {
+      "name" : "Doctor",
+      "value" : 50.0
+    },
+      {
+      "name" : "Postdoctoral",
+      "value" : 55.0
+    }
+  ]
+}
