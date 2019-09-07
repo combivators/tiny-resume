@@ -1,60 +1,117 @@
-## Tiny boot: 一个极小精简的Java应用初始启动以及配置的全新框架
+## Tiny Resume: 简历文档智能识别以及数值化子系统
 ## 设计目的
- - 支持对application的YAML,HOSN,JSON,Properties属性配置文件处理。
- - 支持对Web系统,云计算和StandaloneJVM的部署。
- - 使用@Config注解将属性值绑定到结构化的实体中。
- - 以运行库方式提供，编译不需要依存此Java包。
- - 不依存任何第三方Java包。
+ - 对Excel, Word, PDF格式简历文件进行文本提取。
+ - 对提取的简历文本进行智能识别归档并输出标准JSON格式。
+ - 通过微服群的云计算对标准简历文本进行20多种属性的数值化处理。
+ - 提供上述服务的相应在线API。
+ - 简历文本评价项目策略需由外部提供，并能够实时更新和个别调整。
 
-##Usage
+##原始文档(支持Excel，Word，PDF)解析
 
-###1. Simple Use
-```java
-java net.tiny.boot.Main --help
-      -p --profile The profile name.
-      -f --file    Configuration file.
-                   Default: 'application-{profile}.yml'
-      -i --pid     Process id file (/var/run/pid).
-      -v --verbose On debug mode.
-      -h --help    This help message
-```
-
-
-###2. Application configuration file with profile
-```properties
-Configuration file : application-{profile}.[yml, json, conf, properties]
-
-main = ${launcher}
-shutdown = ${hook}
-daemon = true
-executor = ${pool}
-callback = ${consumer}
-launcher.class = x.y.Launcher
-hook.class = x.y.ShutdownHook
-pool.class = x.y.ExecutorService
-pool.size = 5
-pool.max = 10
-consumer.class = x.y.Callable
-```
-
-
-###3. Configuration java
-```java
-@Config("app.sample")
-public class SampleConfig {
-    private LocalDate date;
-    private LocalDate day;
-    private List<String> array;
-    // Getter and Setter methods
-
+###1. 原始文本信息
+```json
+{
+  "contents" : [
+      {
+      "x" : 1,
+      "y" : 0,
+      "s" : "氏名"
+    },
+      {
+      "x" : 5,
+      "y" : 0,
+      "s" : "T.F"
+    },
+      {
+      "x" : 17,
+      "y" : 0,
+      "s" : "性別"
+    },
+      {
+      "x" : 20,
+      "y" : 0,
+      "s" : "男"
+    },
+  ]
 }
 ```
 
-###4. Configuration file
-```properties
-app.sample.date = 2016/09/16
-app.sample.day = ${app.sample.date}
-app.sample.array = [${${a.b}.c}, ${x.y.z}]
+
+##评价项目的策略
+
+###1. 枚举计算模式(例)
+```json
+{
+  "name" : "Education",
+  "values" : [
+      {
+      "name" : "Junior",
+      "value" : 10.0
+    },
+      {
+      "name" : "Vocational",
+      "value" : 15.0
+    },
+      {
+      "name" : "University",
+      "value" : 30.0
+    },
+      {
+      "name" : "Postgraduate",
+      "value" : 40.0
+    },
+      {
+      "name" : "Doctor",
+      "value" : 50.0
+    },
+      {
+      "name" : "Postdoctoral",
+      "value" : 55.0
+    }
+  ]
+}
+```
+
+
+###2. 线性计算模式(例)
+```json
+{
+  "name" : "Age",
+  "expression" : "value / 65.0 * 0.05"
+}
+```
+
+
+###3. 自然语言演算模式(微服调用例)
+```json
+{
+  "name" : "Skill",
+  "service" : {
+    "url" : "http://192.168.100.200/v1/api/dis?id=Skill",
+    "timeout" : 1000,
+    "auth"    : "true",
+    "token"   : "2ae068ce2"
+  }
+}
+```
+
+##评价结果
+
+###1. 各模式演(计)算结果
+```json
+{
+  "name" : "Skill",
+  "values" : [
+      {
+      "value" : "{识别的文本1}",
+      "rate" : .9823
+    },
+      {
+      "value" : "{识别的文本2}",
+      "rate" : .3814
+    }
+  ]
+}
 ```
 
 ##More Detail, See The Samples

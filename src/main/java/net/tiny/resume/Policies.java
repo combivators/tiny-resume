@@ -75,9 +75,19 @@ public final class Policies {
         }
     }
 
+    public static class MicroService {
+        public String url;
+        public long timeout = 1000L;
+        public boolean auth = true;
+        public String token;
+    }
+
     // 自然语言计算方式
     public static class WordsOperator implements Operator {
         //TODO
+        public String name;
+        public MicroService service;
+
         @Override
         public double apply(String text) {
             return 0.0d;
