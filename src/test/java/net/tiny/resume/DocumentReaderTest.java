@@ -22,7 +22,7 @@ import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.text.PDFTextStripper;
 import org.apache.poi.xwpf.extractor.XWPFWordExtractor;
 import org.apache.poi.xwpf.usermodel.XWPFDocument;
-
+import org.apache.poi.xwpf.usermodel.XWPFParagraph;
 
 import net.tiny.excel.CellRange;
 import net.tiny.excel.SheetTool;
@@ -117,6 +117,18 @@ public class DocumentReaderTest {
         System.out.println(tx);
         ex.close();
         doc.close();
+    }
+
+    @Test
+    public void testDocx() throws Exception {
+        File file = new File("src/test/resources/samples/disruptor.docx");
+        XWPFDocument document = new XWPFDocument (new FileInputStream(file));
+        List<XWPFParagraph> paragraphs = document.getParagraphs();
+        for (XWPFParagraph para : paragraphs) {
+            System.out.println(para.getText());
+        }
+
+        document.close();
     }
 
     @Test
