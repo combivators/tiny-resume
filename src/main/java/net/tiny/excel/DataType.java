@@ -15,108 +15,42 @@ import java.util.Map;
 import java.util.Properties;
 import java.util.TreeMap;
 
-import javax.xml.bind.annotation.XmlEnumValue;
-import javax.xml.bind.annotation.XmlRootElement;
-
 /**
  * Mapping from java data type.
  */
 public enum DataType {
 
-	@XmlEnumValue("boolean")
 	BOOLEAN("boolean", boolean.class),
-
-	@XmlEnumValue("int")
     INTEGER("int", int.class),
-
-	@XmlEnumValue("short")
     SHORT("short", int.class),
-
-    @XmlEnumValue("long")
     LONG("long", long.class),
-
-    @XmlEnumValue("float")
     FLOAT("float", float.class),
-
-    @XmlEnumValue("double")
     DOUBLE("double", double.class),
-
-    @XmlEnumValue("number")
     NUMBER("number", double.class),
-
-    @XmlEnumValue("decimal")
     DECIMAL("decimal", BigDecimal.class),
-
-    @XmlEnumValue("bigint")
     BIGINTEGER("bigint", BigInteger.class),
-
-    @XmlEnumValue("byte")
     BYTE("byte", byte.class),
-
-    @XmlEnumValue("char")
     CHAR("char", char.class),
-
-    @XmlEnumValue("string")
     STRING("string", String.class),
-
-    @XmlEnumValue("enum")
     ENUM("enum", Enum.class),
-
-    @XmlEnumValue("date")
     DATE("date", java.util.Date.class),
-
-    @XmlEnumValue("datetime")
     DATETIME("datetime", java.sql.Date.class),
-
-    @XmlEnumValue("timestamp")
     TIMESTAMP("time", Timestamp.class),
-
-    @XmlEnumValue("calendar")
     CALENDAR("calendar", Calendar.class),
-
-    @XmlEnumValue("ldate")
     LOCALDATE("ldate", java.time.LocalDate.class),
-
-    @XmlEnumValue("ltime")
     LOCALDATETIME("ltime", java.time.LocalDateTime.class),
-
-    @XmlEnumValue("list")
     LIST("list", List.class),
-
-    @XmlEnumValue("map")
     MAP("map", Map.class),
-
-    @XmlEnumValue("properties")
     PROPERTIES("properties", Properties.class),
-
-    @XmlEnumValue("byte-array")
 	BYTE_ARRAY("byte-array", byte[].class),
-
-    @XmlEnumValue("char-array")
 	CHAR_ARRAY("char-array", char[].class),
-
-    @XmlEnumValue("boolean-array")
 	BOOLEAN_ARRAY("boolean-array", boolean[].class),
-
-    @XmlEnumValue("integer-array")
 	INTEGER_ARRAY("integer-array", int[].class),
-
-    @XmlEnumValue("long-array")
 	LONG_ARRAY("long-array", long[].class),
-
-    @XmlEnumValue("float-array")
 	FLOAT_ARRAY("float-array", float[].class),
-
-    @XmlEnumValue("double-array")
 	DOUBLE_ARRAY("double-array", double[].class),
-
-	@XmlEnumValue("array")
 	STRING_ARRAY("array", String[].class),
-
-	@XmlEnumValue("cdata")
 	CDATA("cdata", Serializable.class),
-
-	@XmlEnumValue("xml")
     XML_DATA("xml", XmlData.class);
 
 	//@XmlEnumValue("bean")
@@ -214,10 +148,11 @@ public enum DataType {
 	    	} else if(classType.isEnum()) {
 	    		return DataType.ENUM;
 	    	} else {
+	    		//TODO for jdk11
 	    		// Check XmlRootElement Annotation class.
-	    		if(null != classType.getAnnotation(XmlRootElement.class)) {
-    				return DataType.XML_DATA;
-	    		}
+	    		//if(null != classType.getAnnotation(XmlRootElement.class)) {
+    			//	return DataType.XML_DATA;
+	    		//}
 	    		// Check List interface class.
 	    		if(hasInterface(classType, List.class)) {
 	    			return DataType.LIST;
