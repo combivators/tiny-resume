@@ -40,7 +40,7 @@
     <ant.version>1.9.12</ant.version>
 
     <poi.version>4.1.0</poi.version>
-    <pdfbox.version>2.0.9</pdfbox.version>
+    <pdfbox.version>2.0.18</pdfbox.version>
     <h2.version>1.4.198</h2.version>
     <junit5.version>5.5.2</junit5.version>
     <junit.platform.version>1.5.2</junit.platform.version>
