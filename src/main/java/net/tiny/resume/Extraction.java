@@ -15,7 +15,7 @@ public final class Extraction {
         Education, //教育背景 (Training)
         Skill,     //技能 (Languages, Software, Specific, Licenses, Abilities)
         Experience,//工作经验 (Highlights)
-        Hobbies,   //爱好 (Activities)
+        Hobbies,   //兴趣爱好 (Activities)
         Awards,    //受奖成就荣誉（Accomplishment, Honors)
         Objectives,//目标
         Contact,   //联系
@@ -39,13 +39,15 @@ public final class Extraction {
         public String brith;       //生日
         public String nationality; //国籍
         public String civil;       //婚姻
+        public String visa;        //签证
         public String religion;    //宗教
-        public String family;      //家族
     }
 
     //联系 Contact
     public static class Contact extends Attribute {
+        //分类(type): 住址，邮编，电话，手机，邮箱，微信号，Google，Line，Facebook，Twitter，YID，
         public boolean encode = true;
+
     }
 
     public static enum EducationLevel {
@@ -71,29 +73,41 @@ public final class Extraction {
         public Rank rank;
     }
 
-    //技能 Skill (Languages, Software, Specific, Licenses, Abilities)
+    //技能 Skill (外语:Languages, 软件:Software, 资格:Licenses, 技能:Specific, 能力:Abilities)
     public static class Skill extends Attribute {
         public Rank rank;
     }
 
-    //工程阶段 Phase
-    public static class Phase extends Attribute {}
+    //工程阶段 Phase 企划:planning,咨询:consulting,设计:design,开发:develop,测试:test,运营:operation,保守:maintain,客服:service
+    public static enum Phase {
+        planning,  //企划
+        consulting,//咨询
+        design,    //设计
+        develop,   //开发
+        test,      //测试
+        operation, //运营
+        maintain,  //保守
+        service,   //客服
+    }
+
     //工作经历 Experience
     public static class Experience extends Attribute {
+        //期间(period),领域(field),工程(phases),职责(duty),项目规模(scale),操作系统(os),应用软件(app),
         public String begin;
         public String end;
         public String os;
+        public String scale;//人月数
         public String software;
-        public String duty; //Like SE,TL
+        public String duty; //PG,SE,TL,PM
         public List<Phase> phases;
     }
 
-    //受奖荣誉 Awards
-    public static class Awards extends Attribute {}
+    //求职目标 Objectives : 求职者的职业目标是选择所需的职位和希望的待遇
+    public static class Objectives extends Attribute {}
     //爱好 Hobbies
     public static class Hobby extends Attribute {}
-    //目标 Objectives
-    public static class Objectives extends Description {}
+    //受奖荣誉 Awards
+    public static class Awards extends Attribute {}
     //参考 Reference
     public static class Reference extends Description {}
 
@@ -109,12 +123,12 @@ public final class Extraction {
     public List<Skill> skills;
     /** 工作经历 */
     public List<Experience> experiences;
-    /** 受奖荣誉 */
-    public List<Awards> awards;
-    /** 爱好 */
-    public List<Hobby> Hobbies;
     /** 目标 */
     public Objectives objectives;
+    /** 爱好 */
+    public List<Hobby> Hobbies;
+    /** 受奖荣誉 */
+    public List<Awards> awards;
     /** 参考 */
     public Reference reference;
 }

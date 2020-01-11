@@ -16,11 +16,6 @@ import java.util.List;
 import java.util.Properties;
 import java.util.concurrent.atomic.AtomicLong;
 
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
-
 
 public class DataTypeTest {
 
@@ -118,7 +113,7 @@ public class DataTypeTest {
         assertEquals(DataType.PROPERTIES,  DataType.getByClass(Properties.class));
         assertEquals(DataType.ENUM,  DataType.getByClass(TestType.class));
         assertEquals(DataType.MAP,  DataType.getByClass(HashMap.class));
-        assertEquals(DataType.XML_DATA,  DataType.getByClass(SampleEntity.class));
+        //assertEquals(DataType.XML_DATA,  DataType.getByClass(SampleEntity.class));
         assertNull(DataType.getByClass(TestEntity.class));
     }
 
@@ -198,7 +193,7 @@ public class DataTypeTest {
                     + test1 + ", test2=" + test2 + ", test3=" + FORMAT.format(test3) + "]";
         }
     }
-
+/*
     @XmlAccessorType(XmlAccessType.FIELD)
     @XmlRootElement(name="entity")
     public static class SampleEntity {
@@ -216,5 +211,5 @@ public class DataTypeTest {
             return this.prop;
         }
     }
-
+*/
 }

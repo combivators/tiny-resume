@@ -37,6 +37,15 @@ public class ParserTest {
     }
 
     @Test
+    public void testParseWordSkill() throws Exception {
+        File file = new File("src/test/resources/samples/skill-word.doc");
+        Parser parser = new Parser();
+        Crude crude = parser.parse(file);
+        String json = JsonParser.marshal(crude);
+        System.out.print(json);
+    }
+
+    @Test
     public void testParseDocxResume() throws Exception {
         File file = new File("src/test/resources/samples/disruptor.docx");
         Parser parser = new Parser();

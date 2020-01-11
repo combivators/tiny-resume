@@ -35,9 +35,9 @@ import net.tiny.excel.WorkbookTool;
  * {
  *   "contents" : [
  *    {
- *     "x" : 1,
- *     "y" : 0,
+ *     "p" : [1, 3],
  *     "s" : "氏名"
+ *     "a" : "Name:0.95"
  *    },
  *   ]
  * }
@@ -130,6 +130,7 @@ public class Parser {
             }
         }
         workbook.close();
+        crude.format = "xls";
         return crude;
     }
 
@@ -160,7 +161,7 @@ public class Parser {
 
         document.close();
         fs.close();
-
+        crude.format = "doc";
         return crude;
 
     }
@@ -171,6 +172,7 @@ public class Parser {
         final Crude crude = paserText(ex.getText());
         ex.close();
         doc.close();
+        crude.format = "docx";
         return crude;
     }
 
@@ -187,6 +189,7 @@ public class Parser {
         stripper.setEndPage(end);
         final Crude crude = paserText(stripper.getText(document));
         document.close();
+        crude.format = "pdf";
         return crude;
     }
 
@@ -201,6 +204,35 @@ public class Parser {
             }
         }
         reader.close();
+        crude.format = "txt";
         return crude;
+    }
+
+
+    public static Type guestType(String name) {
+        Type type = null;
+        int pos = name.lastIndexOf(".");
+        if (pos > 0) {
+            String ext = name.substring(pos+1).toLowerCase();
+            switch (ext) {
+            case "xls":
+            case "xlsx":
+                type = Type.Excel;
+                break;
+            case "doc":
+                type = Type.Word;
+                break;
+            case "docx":
+                type = Type.Docx;
+                break;
+            case "pdf":
+                type = Type.PDF;
+                break;
+            default:
+                type = null;
+                break;
+            }
+        }
+        return type;
     }
 }
