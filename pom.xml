@@ -37,7 +37,7 @@
     <validation.version>2.0.1.Final</validation.version>
     <jaxb.version>2.3.1</jaxb.version> <!-- 2.3.0, 2.3.1  -->
     <ejb.version>3.2</ejb.version>
-    <ant.version>1.9.12</ant.version>
+    <ant.version>1.9.15</ant.version>
 
     <poi.version>4.1.0</poi.version>
     <pdfbox.version>2.0.9</pdfbox.version>
